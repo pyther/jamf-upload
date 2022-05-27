@@ -569,7 +569,7 @@ class JamfUploaderBase(Processor):
         if self.env.get("RECIPE_SEARCH_DIRS"):
             matched_filepath = ""
             for d in self.env["RECIPE_SEARCH_DIRS"]:
-                search_dir_path = Path(os.path.expanduser(d))
+                search_dir_path = Path(os.path.expanduser(d)).absolute()
                 if (
                     search_dir_path == recipe_dir_path
                     or search_dir_path in recipe_dir_path.parents
@@ -593,7 +593,7 @@ class JamfUploaderBase(Processor):
                 # grab the root of this repo
                 parent_dir_path = Path(os.path.expanduser(parent_dir))
                 for d in self.env["RECIPE_SEARCH_DIRS"]:
-                    search_dir_path = Path(os.path.expanduser(d))
+                    search_dir_path = Path(os.path.expanduser(d)).absolute()
                     if (
                         search_dir_path == parent_dir_path
                         or search_dir_path in parent_dir_path.parents
